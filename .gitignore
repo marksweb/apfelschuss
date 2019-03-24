@@ -278,7 +278,3 @@ apfelschuss/media/
 .envs/*
 
 !.envs/.local/
-
-.env
-.envs/*
-!.envs/.local/

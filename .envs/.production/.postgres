@@ -1,7 +1,0 @@
-# PostgreSQL
-# ------------------------------------------------------------------------------
-POSTGRES_HOST=postgres
-POSTGRES_PORT=5432
-POSTGRES_DB=apfelschuss
-POSTGRES_USER=rTCgYFQwWiKzELjvEFKuvoWSGZkNwbEw
-POSTGRES_PASSWORD=R6RWurLDJBG6aLwvnF3zd0BweGKh4NwPZgMhvy4SuhQec3CStrJbEsm6MnxXyhGv
