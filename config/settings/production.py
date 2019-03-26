@@ -1,3 +1,10 @@
+import logging
+
+import sentry_sdk
+
+from sentry_sdk.integrations.django import DjangoIntegration
+from sentry_sdk.integrations.logging import LoggingIntegration
+
 from .base import *  # noqa
 from .base import env
 
@@ -119,13 +126,13 @@ TEMPLATES[0]["OPTIONS"]["loaders"] = [  # noqa F405
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#default-from-email
 DEFAULT_FROM_EMAIL = env(
-    "DJANGO_DEFAULT_FROM_EMAIL", default="Apfelschuss <noreply@apfelschuss.io>"
+    "DJANGO_DEFAULT_FROM_EMAIL", default="apfelschuss <noreply@apfelschuss.io>"
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#server-email
 SERVER_EMAIL = env("DJANGO_SERVER_EMAIL", default=DEFAULT_FROM_EMAIL)
 # https://docs.djangoproject.com/en/dev/ref/settings/#email-subject-prefix
 EMAIL_SUBJECT_PREFIX = env(
-    "DJANGO_EMAIL_SUBJECT_PREFIX", default="[Apfelschuss]"
+    "DJANGO_EMAIL_SUBJECT_PREFIX", default="[apfelschuss]"
 )
 
 # ADMIN
@@ -159,13 +166,10 @@ AWS_PRELOAD_METADATA = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#logging
 # See https://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
-# A sample logging configuration. The only tangible logging
-# performed by this configuration is to send an email to
-# the site admins on every HTTP 500 error when DEBUG=False.
+
 LOGGING = {
     "version": 1,
-    "disable_existing_loggers": False,
-    "filters": {"require_debug_false": {"()": "django.utils.log.RequireDebugFalse"}},
+    "disable_existing_loggers": True,
     "formatters": {
         "verbose": {
             "format": "%(levelname)s %(asctime)s %(module)s "
@@ -173,30 +177,38 @@ LOGGING = {
         }
     },
     "handlers": {
-        "mail_admins": {
-            "level": "ERROR",
-            "filters": ["require_debug_false"],
-            "class": "django.utils.log.AdminEmailHandler",
-        },
         "console": {
             "level": "DEBUG",
             "class": "logging.StreamHandler",
             "formatter": "verbose",
-        },
+        }
     },
     "loggers": {
-        "django.request": {
-            "handlers": ["mail_admins"],
+        "django.db.backends": {
             "level": "ERROR",
-            "propagate": True,
+            "handlers": ["console"],
+            "propagate": False,
         },
+        # Errors logged by the SDK itself
+        "sentry_sdk": {"level": "ERROR", "handlers": ["console"], "propagate": False},
         "django.security.DisallowedHost": {
             "level": "ERROR",
-            "handlers": ["console", "mail_admins"],
-            "propagate": True,
+            "handlers": ["console"],
+            "propagate": False,
         },
     },
 }
+
+# Sentry
+# ------------------------------------------------------------------------------
+SENTRY_DSN = env("SENTRY_DSN")
+SENTRY_LOG_LEVEL = env.int("DJANGO_SENTRY_LOG_LEVEL", logging.INFO)
+
+sentry_logging = LoggingIntegration(
+    level=SENTRY_LOG_LEVEL,  # Capture info and above as breadcrumbs
+    event_level=None,  # Send no events from log messages
+)
+sentry_sdk.init(dsn=SENTRY_DSN, integrations=[sentry_logging, DjangoIntegration()])
 
 # Your stuff...
 # ------------------------------------------------------------------------------
