@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const PreloadWebpackPlugin = require('preload-webpack-plugin');
 const CssUrlRelativePlugin = require('css-url-relative-plugin');
 var BundleTracker = require('webpack-bundle-tracker');
@@ -15,7 +14,7 @@ const config = {
   devtool: IS_DEV ? 'eval' : 'source-map',
   entry: './apfelschuss/static-src/js/index',
   output: {
-    filename: '[name].[hash].js',
+    filename: 'js/[name].js',
     path: path.resolve('./apfelschuss/static/'),
   },
   module: {
@@ -28,7 +27,7 @@ const config = {
       {
         test: /\.scss$/,
         use: [
-          IS_DEV ? 'style-loader' : MiniCssExtractPlugin.loader,
+          'style-loader',
           'css-loader',
           'sass-loader',
         ],
@@ -106,10 +105,6 @@ const config = {
         preserveLineBreaks: true,
         removeComments: true,
       },
-    }),
-    new MiniCssExtractPlugin({
-      filename: IS_DEV ? 'css/[name].css' : 'css/[name].[contenthash].css',
-      chunkFilename: '[name].css',
     }),
     new webpack.HashedModuleIdsPlugin(),
     new PreloadWebpackPlugin({
