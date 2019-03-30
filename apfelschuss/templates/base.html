@@ -1,4 +1,6 @@
-{% load static i18n %}<!DOCTYPE html>
+{% load static i18n %}
+{% load render_bundle from webpack_loader %}
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -16,15 +18,15 @@
     <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
     {% block css %}
-    
+
 
     <!-- Your stuff: Third-party CSS libraries go here -->
-    
+
     <!-- This file stores project-specific CSS -->
-    
+
     <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
-    
-    
+
+
     {% endblock %}
 
   </head>
@@ -91,19 +93,14 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     {% block javascript %}
-      
-      <!-- Vendor dependencies bundled as one file-->
-      
-      <script src="{% static 'js/vendors.js' %}"></script>
-      
-      
+
 
       <!-- place project specific Javascript in this file -->
-      
-      <script src="{% static 'js/project.js' %}"></script>
-      
+
+      {% render_bundle 'main' 'js' %}
+
 
     {% endblock javascript %}
   </body>
 </html>
- 
+

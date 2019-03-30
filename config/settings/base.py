@@ -67,6 +67,7 @@ THIRD_PARTY_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "rest_framework",
+    "webpack_loader",
 ]
 LOCAL_APPS = [
     "apfelschuss.users.apps.UsersAppConfig",
@@ -232,5 +233,15 @@ ACCOUNT_ADAPTER = "apfelschuss.users.adapters.AccountAdapter"
 SOCIALACCOUNT_ADAPTER = "apfelschuss.users.adapters.SocialAccountAdapter"
 
 
-# Your stuff...
+# django-webpack-loader
 # ------------------------------------------------------------------------------
+WEBPACK_LOADER = {
+    'DEFAULT': {
+        'CACHE': not DEBUG,
+        'BUNDLE_DIR_NAME': '/', # must end with slash
+        'STATS_FILE': APPS_DIR + 'static-src/webpack-stats.json',
+        'POLL_INTERVAL': 0.1,
+        'TIMEOUT': None,
+        'IGNORE': [r'.+\.hot-update.js', r'.+\.map']
+    }
+}

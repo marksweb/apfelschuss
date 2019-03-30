@@ -1,31 +1,28 @@
 {
   "name": "apfelschuss",
-  "version": "0.1.0",
-  "dependencies": {},
-  "devDependencies": {
-    "bootstrap": "4.1.1",
-    "gulp-concat": "^2.6.1",
-    "jquery": "3.3.1",
-    "popper.js": "1.14.3",
-    "autoprefixer": "^9.4.7",
-    "browser-sync": "^2.14.0",
-    "cssnano": "^4.1.10",
-    "gulp": "^4.0.0",
-    "gulp-imagemin": "^5.0.3",
-    "gulp-plumber": "^1.2.1",
-    "gulp-postcss": "^8.0.0",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^4.0.2",
-    "gulp-uglify-es": "^1.0.4",
-    "pixrem": "^5.0.0"
+  "version": "1.0.0",
+  "description": "Module bundler for apfelschuss webapplication",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
   },
-  "engines": {
-    "node": ">=8"
-  },
-  "browserslist": [
-    "last 2 versions"
-  ],
   "scripts": {
-    "dev": "gulp"
+    "build": "webpack",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Apfelschuss/apfelschuss.git"
+  },
+  "author": "Philipp Bruhin",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/Apfelschuss/apfelschuss/issues"
+  },
+  "homepage": "https://github.com/Apfelschuss/apfelschuss#readme",
+  "dependencies": {
+    "webpack": "^4.29.6",
+    "webpack-bundle-tracker": "^0.4.2-beta",
+    "webpack-cli": "^3.3.0"
   }
 }
