@@ -15,7 +15,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+    <link rel="icon" href="{% static 'icon.ico' %}">
 
     {% block css %}
 
@@ -24,7 +24,7 @@
 
     <!-- This file stores project-specific CSS -->
 
-    <link href="{% static 'css/project.min.css' %}" rel="stylesheet">
+    {% render_bundle 'main' 'css' %}
 
 
     {% endblock %}
@@ -97,6 +97,8 @@
 
       <!-- place project specific Javascript in this file -->
 
+      {% render_bundle 'runtime' 'js' %}
+      {% render_bundle 'vendor' 'js' %}
       {% render_bundle 'main' 'js' %}
 
 
