@@ -15,9 +15,9 @@
   "main": "index.js",
   "scripts": {
     "clean": "rimraf ./apfelschuss/static/*",
-    "dev": "npm rebuild node-sass && node node_modules/webpack-cli/bin/cli.js --config webpack.config.js",
-    "watch": "npm rebuild node-sass && node node_modules/webpack-cli/bin/cli.js --watch --config webpack.config.js",
-    "build": "node node_modules/webpack-cli/bin/cli.js --optimize-minimize --config webpack.production.config.js",
+    "dev": "npm rebuild node-sass && webpack --config webpack.config.js",
+    "watch": "npm rebuild node-sass && webpack --watch --config webpack.config.js",
+    "build": "webpack --optimize-minimize --config webpack.production.config.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "heroku-postbuild": "build"
   },
