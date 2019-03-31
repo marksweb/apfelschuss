@@ -280,7 +280,4 @@ apfelschuss/media/
 !.envs/.local/
 
 # Webpack and styles
-static/*
-!static/.keep
-
-webpack-stats.json
+apfelschuss/static/*
