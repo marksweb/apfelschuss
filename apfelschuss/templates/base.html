@@ -1,6 +1,4 @@
-{% load static i18n %}
-{% load render_bundle from webpack_loader %}
-<!DOCTYPE html>
+{% load static i18n %}<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -15,7 +13,7 @@
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
     <![endif]-->
 
-    <link rel="icon" href="{% static 'icon.ico' %}">
+    <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
 
     {% block css %}
 
@@ -24,7 +22,7 @@
 
     <!-- This file stores project-specific CSS -->
 
-    {% render_bundle 'main' 'css' %}
+    <link href="{% static 'main.css' %}" rel="stylesheet">
 
 
     {% endblock %}
@@ -97,9 +95,7 @@
 
       <!-- place project specific Javascript in this file -->
 
-      {% render_bundle 'runtime' 'js' %}
-      {% render_bundle 'vendor' 'js' %}
-      {% render_bundle 'main' 'js' %}
+      <script src="{% static 'main.js' %}"></script>
 
 
     {% endblock javascript %}
