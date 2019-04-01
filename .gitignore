@@ -280,5 +280,5 @@ apfelschuss/media/
 !.envs/.local/
 
 # Webpack and styles
-apfelschuss/static/
+apfelschuss/static/*
 !apfelschuss/static/.gitkeep
