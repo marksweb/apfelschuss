@@ -3,7 +3,7 @@ const webpack = require('webpack')
 
 const configs = [{
   mode: 'development',
-  entry: './apfelschuss/assets/index.js',
+  entry: './apfelschuss/src/index.js',
   output: {
     path: path.resolve(__dirname, './apfelschuss/static'),
     filename: '[name].js'

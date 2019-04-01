@@ -8,7 +8,7 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const configs = [{
   mode: 'production',
-  entry: './apfelschuss/assets/index.js',
+  entry: './apfelschuss/src/index.js',
   output: {
     path: path.resolve(__dirname, './apfelschuss/static'),
     filename: '[name].js'
@@ -74,7 +74,9 @@ const configs = [{
   },
 
   plugins: [
-    new CleanWebpackPlugin(),
+    new CleanWebpackPlugin({
+      cleanOnceBeforeBuildPatterns: ['**/*', '!.gitkeep'],
+    }),
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',
@@ -83,7 +85,7 @@ const configs = [{
     }),
     new CopyWebpackPlugin([
       {
-        from: './apfelschuss/assets/public',
+        from: './apfelschuss/src/public',
         to: 'public',
       },
     ]),
