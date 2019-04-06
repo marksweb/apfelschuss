@@ -2,4 +2,6 @@ from django.apps import AppConfig
 
 
 class VotesConfig(AppConfig):
-    name = 'votes'
+
+    name = "apfelschuss.votes"
+    verbose_name = "Votes"

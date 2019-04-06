@@ -27,6 +27,7 @@ class Voting(models.Model):
     thumbnail = models.ImageField()
     video_url = models.URLField(max_length=200)
     categories = models.ManyToManyField(Category)
+    featured = models.BooleanField(default=True)
 
     def __str__(self):
         return self.title
