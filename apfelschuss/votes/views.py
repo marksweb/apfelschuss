@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .models import Voting
+from apfelschuss.votes.models import Voting
 
 def voting(request):
     queryset = Voting.objects.filter(featured=True)
