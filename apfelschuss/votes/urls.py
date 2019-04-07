@@ -4,4 +4,5 @@ from . import views
 app_name = "votes"
 urlpatterns = [
     path('', views.voting, name='voting'),
+    path('archive/', views.archive, name='archive'),
 ]

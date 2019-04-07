@@ -8,3 +8,6 @@ def voting(request):
         'object_list': featured
     }
     return render(request, 'votes/voting.html', context)
+
+def archive(request):
+    return render(request, 'votes/archive.html', {})
